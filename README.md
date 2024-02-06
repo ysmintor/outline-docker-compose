@@ -1,6 +1,8 @@
 # outline-docker-compose
 
 Install a self-hosted [Outline](https://github.com/outline/outline) wiki instance in a couple of minutes.
+In this branch, I removed internal nginx proxy server, direct proxy by external nginx proxy manager.
+One can config NPM with config/sample/npm_nginx.conf
 
 ## Features:
 

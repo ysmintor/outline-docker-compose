@@ -31,7 +31,8 @@ function create_global_env_file {
     env_replace NETWORKS_EXTERNAL $NETWORKS_EXTERNAL $env_file
     # NGINX
     env_replace HTTP_IP $HTTP_IP $env_file
-    env_replace HTTP_PORT_IP $HTTP_PORT_IP $env_file
+    env_replace OUTLINE_HTTP_PORT_IP $OUTLINE_HTTP_PORT_IP $env_file
+    env_replace OIDC_HTTP_PORT_IP $OIDC_HTTP_PORT_IP $env_file
     # Docker image version
     env_replace OUTLINE_VERSION $OUTLINE_VERSION $env_file
     env_replace POSTGRES_VERSION $POSTGRES_VERSION $env_file

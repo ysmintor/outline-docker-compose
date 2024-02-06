@@ -57,7 +57,10 @@ services:
       - ./env.oidc
     volumes:
       - ./data/outline:/var/lib/outline/data
+    user: 0:0
     restart: always
+    ports:
+      - ${HTTP_IP}:${OUTLINE_HTTP_PORT_IP}:3000
     depends_on:
       - wk-postgres
       - wk-redis
@@ -73,26 +76,13 @@ services:
       - ./data/uc/db:/app/db:z
       - ./data/uc/static_root:/app/static_root:z
     restart: always
+    ports:
+      - ${HTTP_IP}:${OIDC_HTTP_PORT_IP}:8000
     env_file:
       - ./env.oidc-server
     networks:
       - ${NETWORKS}
-  wk-nginx:
-    image: nginx
-    ports:
-      - ${HTTP_IP}:${HTTP_PORT_IP}:80
-    volumes:
-      - ./config/nginx/:/etc/nginx/conf.d/:ro
-      - ./data/uc/static_root:/uc/static_root:ro
-    restart: always
-    depends_on:
-##BEGIN MINIO 
-      - wk-minio
-##END
-      - wk-outline
-      - wk-oidc-server
-    networks:
-      - ${NETWORKS}
+
 networks:
   ${NETWORKS}:
     external: ${NETWORKS_EXTERNAL}
